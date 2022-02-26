@@ -759,7 +759,7 @@ return TranText;
 }
 function MONEYMONEY(AMOUNT)
 	{
-	let A = Text.split("#");	
+	let A = AMOUNT.split("#");	
 	let Pistals = Number((A[3]%100));
 	let Sepals =Number((A[2]%100)) + Math.floor((A[3])/100);
 	let Petals = Number(1+(A[1])%100) + Math.floor((A[2])/100);
