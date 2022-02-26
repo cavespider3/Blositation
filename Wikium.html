@@ -442,10 +442,10 @@ const Mojibake_SingleCase_List = [" ","0","1","2","3","4","5","6","7","8","9",".
 const UNINEZ=[
 "✬","✭","✮","✯","❧","❀","❥","❖","❴","❵","🕱","☰","☱","☲","☳","☴","☵","☶","☷","⚙","☉","☄","☼","☾","❀","🞠","🞛","◈","🞚","◇"];
 //Cosmium Curenncy:
-//◇-Pistils (flower related)
-//🞚
-//◈
-//🞛
+//◇[28]-Pistils (flower related)
+//🞚[27]-Sepals (◇x100)
+//◈[26]-Petals (🞚x100)
+//🞛[25]-??? (◈x100)
 const Symbol_Convert = {
 "...":"⌛︎",
 ". . .":"⌛︎",
@@ -505,6 +505,31 @@ if((Text.substr(r,5))==". . .")
 }
 
 if((Text.substr(r,7)).split(".")[0]=="&nez" || Text.substr(r,4)=="<br>"||Text.substr(r,2)=="\n"){
+	if((Text.substr(r,10)).split(".")[1]=="curen")
+		{
+	let Calendate="";
+	let W = r+10;
+	let U = W-9;
+	while(W<Text.length)
+	{
+	U = W-9;
+		console.log(Text.substr(W,1),U,W);	
+	
+	if(Text.substr(W,1)==";")
+	{
+	Calendate = (Text.substr(r,10+U-1).split(".")[2]);
+	console.log(Calendate);
+	break;
+	}
+	W++;
+	}
+	TranText+=MONEYMONEY(Calendate);
+	
+	r+=(W-r);	
+	continue;	
+	}
+		
+	else
 	if ((Text.substr(r,10)).split(".")[1]=="calen")
 	{
 	let Calendate="";
@@ -731,7 +756,15 @@ TranText+= Upper?New_READONLY[Text[r]].toUpperCase():New_READONLY[Text[r]];
 }
 return TranText;
 }
-
+function MONEYMONEY(AMOUNT)
+	{
+	let A = Text.split("#");	
+	let Pistals = Number((A[3]%100));
+	let Sepals =Number((A[2]%100)) + Math.floor((A[3])/100);
+	let Petals = Number(1+(A[1])%100) + Math.floor((A[2])/100);
+	let Sakuras = Number(1+(A[0])%100) + Math.floor((A[1])/100);
+	return Translate((Sakuras>0?"&nez.026"+Sakuras:"")+(Petals>0?"&nez.027"+Petals:"")+(Sepals>0?"&nez.028"+Sepals:"")+(Pistals>0?"&nez.029"+Pistals:""));
+	}
 function Blos_Convert(translate,Text,mode=0)
 {
 	let A = Text.split("#");
