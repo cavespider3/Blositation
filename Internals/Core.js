@@ -11,6 +11,8 @@ document.getElementById("ResultHUMAN").innerHTML = Translate(document.getElement
 
 }
 //The massive code that handles the Blosite language and special text handlers//
+var Noselect = false;
+
 /*
 Blosite attributes:
 none-Translate
@@ -159,7 +161,6 @@ document.onkeypress = function(event){
 		break;
 	}
 }
-var Noselect = false;
 
 
 function Translate(Text,Bakify=true,IsConsole,Selectable,DOITANYWAYS,Blosite_Obj,BulkBlob)
