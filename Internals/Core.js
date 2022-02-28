@@ -267,7 +267,7 @@ let sOpen = false;
 let dOpen = false;
 Text = Text.toLowerCase();
 var r = 0;
-if(!Blosite_Obj)
+if(Blosite_Obj == null)
 {}
 else if(Blosite_Obj.hasAttribute("_break"))
 	{
