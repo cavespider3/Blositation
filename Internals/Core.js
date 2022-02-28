@@ -300,14 +300,14 @@ for(var i=0;i<Blosite_Obj.attributes.length;i++)
 	Noselect = true;
 	}
 }
-else if(Blosite_Obj.getAttribute("_break"))
+
+TranText +=" <";
+}else if(Blosite_Obj.getAttribute("_break"))
 	{
 	Blosite_Obj.style.color = "#FFFA00";
 	KAYS = KAYS;
 	Noselect = true;
 	}
-TranText +=" <";
-}
 return TranText;	
 }
 else if(Bakify)
