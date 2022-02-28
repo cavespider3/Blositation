@@ -266,7 +266,7 @@ let sOpen = false;
 let dOpen = false;
 Text = Text.toLowerCase();
 var r = 0;
-	Noselect = false;
+	
 if(Blosite_Obj.hasAttribute("_break"))
 	{
 	Blosite_Obj.style.color = "#FFFA00";
@@ -307,7 +307,6 @@ TranText +=" <";
 	{
 	Blosite_Obj.style.color = "#FFFA00";
 	KAYS = KAYS;
-	Noselect = true;
 	}
 return TranText;	
 }
