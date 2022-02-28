@@ -124,7 +124,7 @@ if(Down)
 PLR_CUR.setAttribute("CursorPos",Math.min(Number(PLR_CUR.getAttribute("CursorMax"))-1,Number(PLR_CUR.getAttribute("CursorPos"))+1));	
 }
 
-if(Yes)
+if(Yes&&!Noselect)
 {
 PLR_CUR.setAttribute("CursorPos",1);
 Nez_Page(KAYS);
@@ -300,6 +300,12 @@ for(var i=0;i<Blosite_Obj.attributes.length;i++)
 	Noselect = true;
 	}
 }
+else if(Blosite_Obj.getAttribute("_break"))
+	{
+	Blosite_Obj.style.color = "#FFFA00";
+	KAYS = KAYS;
+	Noselect = true;
+	}
 TranText +=" <";
 }
 return TranText;	
