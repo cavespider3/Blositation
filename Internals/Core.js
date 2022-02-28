@@ -1,3 +1,15 @@
+   function ToBlositeresult()
+{
+document.getElementById("ResultBlos").innerHTML = Translate(document.getElementById("ToBlos").value,true);
+
+}
+
+function FromBlositeresult()
+{
+
+document.getElementById("ResultHUMAN").innerHTML = Translate(document.getElementById("FromBlos").value,false);
+
+}
 //The massive code that handles the Blosite language and special text handlers//
 /*
 Blosite attributes:
