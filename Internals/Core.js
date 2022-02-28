@@ -275,7 +275,7 @@ if(Blosite_Obj.hasAttribute("_break"))
 //IMPORTANT, CHECK IF the listed option contains the Menu tag firstChild
 if(IsConsole || Selectable)
 {
-	Noselect = false;
+	
 if(Selectable)
 {
 //console.log(Blosite_Obj);
@@ -289,6 +289,7 @@ TranText = Translate(casecheck,Bakify,false,false,false,Blosite_Obj);
 }
 if(Number(Blosite_Obj.getAttribute("NEZID"))==Number(PLR_CUR.getAttribute("CursorPos")))
 {
+	Noselect = false;
 for(var i=0;i<Blosite_Obj.attributes.length;i++)
 {
 	if(Blosite_Obj.attributes[i].localName.startsWith("_")&&Blosite_Obj.attributes[i].localName!="_break")
