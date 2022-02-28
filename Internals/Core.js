@@ -267,8 +267,9 @@ let sOpen = false;
 let dOpen = false;
 Text = Text.toLowerCase();
 var r = 0;
-	
-if(Blosite_Obj.hasAttribute("_break"))
+if(!Blosite_Obj)
+{}
+else if(Blosite_Obj.hasAttribute("_break"))
 	{
 	Blosite_Obj.style.color = "#FFFA00";
 	KAYS = KAYS;
