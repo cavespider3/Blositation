@@ -159,7 +159,7 @@ document.onkeypress = function(event){
 		break;
 	}
 }
-
+var Noselect = false;
 
 
 function Translate(Text,Bakify=true,IsConsole,Selectable,DOITANYWAYS,Blosite_Obj,BulkBlob)
@@ -266,6 +266,12 @@ let sOpen = false;
 let dOpen = false;
 Text = Text.toLowerCase();
 var r = 0;
+	
+if(Blosite_Obj.hasAttribute("_break"))
+	{
+	Blosite_Obj.style.color = "#FFFA00";
+	KAYS = KAYS;
+	}	
 //IMPORTANT, CHECK IF the listed option contains the Menu tag firstChild
 if(IsConsole || Selectable)
 {
@@ -284,9 +290,14 @@ if(Number(Blosite_Obj.getAttribute("NEZID"))==Number(PLR_CUR.getAttribute("Curso
 {
 for(var i=0;i<Blosite_Obj.attributes.length;i++)
 {
-	if(Blosite_Obj.attributes[i].localName.startsWith("_"))
+	if(Blosite_Obj.attributes[i].localName.startsWith("_")&&Blosite_Obj.attributes[i].localName!="_break")
 	{
 		KAYS = Blosite_Obj.attributes[i].localName;
+	}else if(Blosite_Obj.attributes[i].localName=="_break")
+	{
+	Blosite_Obj.style.color = "#FFFA00";
+	KAYS = KAYS;
+	Noselect = true;
 	}
 }
 TranText +=" <";
