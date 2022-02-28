@@ -22,7 +22,7 @@ MenuData - Holds Blosite Menu pages (doesnt translate) (max of 1 per html file!)
 */
 var KAYS = "_Hub";
 var OLD_TEXT_CLOUD =null;
-console.log(document.querySelectorAll("Blosite[MenuData]")[0]);
+//console.log(document.querySelectorAll("Blosite[MenuData]")[0]);
 var PLR_CUR = document.querySelectorAll("Blosite[MenuData]")[0];
 if(!PLR_CUR)
 {
@@ -49,7 +49,7 @@ function Blosite_Node_Handle(Node)
 	} 
 	//If it's the case check for any menu related nodes
 	let A = Node.children[Z];
-	console.log(A);
+	//console.log(A);
 	if(Node.children[Z].children.length==0)
 	{
 	Node.children[Z].innerText = Translate(A.innerText,!A.hasAttribute("Decode"),A.hasAttribute("Menu"),A.hasAttribute("MenuOption"),A.hasAttribute("ForceTranslate"),Node.children[Z],A.hasAttribute("MenuData"));
@@ -89,14 +89,14 @@ let F = document.body.children;
 var NEW = null;
 for(var Q=0;Q<F.length;Q++)
 {
-console.log(F[Q].querySelectorAll("Blosite["+Key+"]"));
+//console.log(F[Q].querySelectorAll("Blosite["+Key+"]"));
 let E = F[Q].querySelectorAll("Blosite["+Key+"]");
 for(var X=0;X<E.length;X++)
 {
 if(E[X].hasAttribute("menu"))
 {
 NEW = E[X].cloneNode(true);
-console.log(E[X]);
+//console.log(E[X]);
 break;
 }	
 }
@@ -278,7 +278,7 @@ if(IsConsole || Selectable)
 	Noselect = false;
 if(Selectable)
 {
-console.log(Blosite_Obj);
+//console.log(Blosite_Obj);
 Blosite_Obj.setAttribute("NEZID",Number(PLR_CUR.getAttribute("CursorMax")));
 PLR_CUR.setAttribute("CursorMax",Number(PLR_CUR.getAttribute("CursorMax"))+1);
 TranText = casecheck;
@@ -360,12 +360,12 @@ if((Text.substr(r,7)).split(".")[0]=="&nez" || Text.substr(r,4)=="<br>"||Text.su
 	while(W<Text.length)
 	{
 	U = W-9;
-		console.log(Text.substr(W,1),U,W);	
+		//console.log(Text.substr(W,1),U,W);	
 	
 	if(Text.substr(W,1)==";")
 	{
 	Calendate = (Text.substr(r,10+U-1).split(".")[2]);
-	console.log(Calendate);
+	//console.log(Calendate);
 	break;
 	}
 	W++;
@@ -383,12 +383,12 @@ if((Text.substr(r,7)).split(".")[0]=="&nez" || Text.substr(r,4)=="<br>"||Text.su
 	while(W<Text.length)
 	{
 	U = W-9;
-		console.log(Text.substr(W,1),U,W);	
+		//console.log(Text.substr(W,1),U,W);	
 	
 	if(Text.substr(W,1)==";")
 	{
 	Calendate = (Text.substr(r,10+U-1).split(".")[2]);
-	console.log(Calendate);
+	//console.log(Calendate);
 	break;
 	}
 	W++;
@@ -406,12 +406,12 @@ if((Text.substr(r,7)).split(".")[0]=="&nez" || Text.substr(r,4)=="<br>"||Text.su
 	while(W<Text.length)
 	{
 	U = W-9;
-		console.log(Text.substr(W,1),U,W);	
+		//console.log(Text.substr(W,1),U,W);	
 	
 	if(Text.substr(W,1)==";")
 	{
 	Calendate = (Text.substr(r,10+U-1).split(".")[2]);
-	console.log(Calendate);
+	//console.log(Calendate);
 	break;
 	}
 	W++;
@@ -434,7 +434,7 @@ if((Text.substr(r,7)).split(".")[0]=="&nez" || Text.substr(r,4)=="<br>"||Text.su
 	}
 	if((casecheck.substr(r,7)).split(".")[1]=="br")
 	{
-	console.log("SKIP");
+	//console.log("SKIP");
 	TranText+="\n";	
 	r+=6;
 	continue;
