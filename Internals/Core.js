@@ -307,6 +307,7 @@ TranText +=" <";
 	{
 	Blosite_Obj.style.color = "#FFFA00";
 	KAYS = KAYS;
+		Noselect = true;
 	}
 return TranText;	
 }
