@@ -275,6 +275,7 @@ if(Blosite_Obj.hasAttribute("_break"))
 //IMPORTANT, CHECK IF the listed option contains the Menu tag firstChild
 if(IsConsole || Selectable)
 {
+	Noselect = false;
 if(Selectable)
 {
 console.log(Blosite_Obj);
