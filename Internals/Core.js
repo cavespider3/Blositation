@@ -10,6 +10,12 @@ function FromBlositeresult()
 document.getElementById("ResultHUMAN").innerHTML = Translate(document.getElementById("FromBlos").value,false);
 
 }
+
+function Nez_Scout()//sudo get, returns page
+{
+return window.location.href.split("?")[1].split("&")[0];
+}
+
 //The massive code that handles the Blosite language and special text handlers//
 var Noselect = false;
 
@@ -23,6 +29,16 @@ ForceTranslate - Forces the text to translate
 MenuData - Holds Blosite Menu pages (doesnt translate) (max of 1 per html file!)
 */
 var KAYS = "_Hub";
+if(!Nez_Scout())
+{
+KAYS = "_Hub";
+}
+else{
+KAYS = Nez_Scout();
+PLR_CUR.setAttribute("CursorPos",1);
+Nez_Page(KAYS);
+}
+
 var OLD_TEXT_CLOUD =null;
 //console.log(document.querySelectorAll("Blosite[MenuData]")[0]);
 var PLR_CUR = document.querySelectorAll("Blosite[MenuData]")[0];
