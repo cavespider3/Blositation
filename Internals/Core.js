@@ -13,7 +13,7 @@ document.getElementById("ResultHUMAN").innerHTML = Translate(document.getElement
 
 function Nez_Scout()//sudo get, returns page
 {
-return window.location.href.split("?")[1].split("&")[0];
+return !window.location.href.split("?")[1]?"_Hub":window.location.href.split("?")[1].split("&")[0];
 }
 
 //The massive code that handles the Blosite language and special text handlers//
