@@ -35,7 +35,6 @@ KAYS = "_Hub";
 }
 else{
 KAYS = Nez_Scout();
-PLR_CUR.setAttribute("CursorPos",1);
 Nez_Page(KAYS);
 }
 
