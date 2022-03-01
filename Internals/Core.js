@@ -13,7 +13,7 @@ document.getElementById("ResultHUMAN").innerHTML = Translate(document.getElement
 
 function Nez_Scout()//sudo get, returns page
 {
-return !window.location.href.split("?")[1]?"_Hub":window.location.href.split("?")[1].split("&")[0];
+return !window.location.href.split("?")[1]?null:window.location.href.split("?")[1].split("&")[0];
 }
 
 //The massive code that handles the Blosite language and special text handlers//
@@ -28,7 +28,7 @@ MenuOption - menu option (doesnt translate)
 ForceTranslate - Forces the text to translate
 MenuData - Holds Blosite Menu pages (doesnt translate) (max of 1 per html file!)
 */
-var KAYS = "_Hub";
+var KAYS;
 if(!Nez_Scout())
 {
 KAYS = "_Hub";
