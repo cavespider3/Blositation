@@ -1,0 +1,33 @@
+span{text-align:center;}
+	span.Apex{color:#FF00AA;}
+	span.Const{color:#FFFA00;}
+	span.Nezu{color:#00AAFF;}
+	span.Kits{color:#FFAA00;}
+	span.Gian{color:#AA00FF;}
+	span.Meta{color:#FFAAFF;}
+	span.Snow{color:#FFFFFF;}
+	span.NNS{color:#0AFF0A;}
+  
+body{
+	background-color:#000;
+	color:	#0F0;
+	font-size: 22px;
+
+}
+textarea,button{
+	background-color:#000;
+	color:	#0F0;
+	font-size: 30px;
+border: 1px solid green;
+}
+button{
+background-color:#000;
+width:100px;
+height:40%;
+font-size: 300%;
+margin: 15px;
+padding-top:1%;
+}
+td{border: 1px solid green;text-align:center;}
+div{border: 1px solid green;}
+	Blosite[MenuData]{top:100%;position:fixed;font-size: 0px;visibility:hidden;}
