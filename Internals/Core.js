@@ -1,3 +1,20 @@
+  const Omni_Pass_List={
+	"TimeMouseKey_000":{"Code":"Locua","Pass_Page":"_Killertoy_NovaLog_PA_000"},
+	"TimeMouseKey_001":{"Code":"ackt-006","Pass_Page":"_Killertoy_NovaLog_PA_001"},
+	
+}; 
+var usingtouch=false;
+var passdata_cloud;
+var Noselect = false;
+var NeverLosePass ="";
+var RequirePass = false;
+var Init = true;
+var KAYS;
+var OLD_TEXT_CLOUD =null;
+var PastaKey="";
+var PLR_CUR;
+old_Pas1=["12345","_Hub","_Hub"];
+
    function ToBlositeresult()
 {
 document.getElementById("ResultBlos").innerHTML = Translate(document.getElementById("ToBlos").value,true);
@@ -13,11 +30,16 @@ document.getElementById("ResultHUMAN").innerHTML = Translate(document.getElement
 
 function Nez_Scout()//sudo get, returns page
 {
+try{
+if(window.location.href.split("?")[1].split("&")[0] =="_Passcade")
+{
+return !window.location.href.split("?")[1]?null:window.location.href.split("?")[1].split("&");	
+}
 return !window.location.href.split("?")[1]?null:window.location.href.split("?")[1].split("&")[0];
+}catch(e){!window.location.href.split("?")[1]?null:window.location.href.split("?")[1].split("&")[0];}
 }
 
 //The massive code that handles the Blosite language and special text handlers//
-var Noselect = false;
 
 /*
 Blosite attributes:
@@ -28,158 +50,16 @@ MenuOption - menu option (doesnt translate)
 ForceTranslate - Forces the text to translate
 MenuData - Holds Blosite Menu pages (doesnt translate) (max of 1 per html file!)
 */
-var KAYS;
-if(!Nez_Scout())
-{
-KAYS = "_Hub";
-}
-else{
-KAYS = Nez_Scout();
-Nez_Page(KAYS);
-}
 
-var OLD_TEXT_CLOUD =null;
-//console.log(document.querySelectorAll("Blosite[MenuData]")[0]);
-var PLR_CUR = document.querySelectorAll("Blosite[MenuData]")[0];
-if(!PLR_CUR)
-{
-}else
-{
-PLR_CUR.setAttribute("CursorMax",1);
-PLR_CUR.setAttribute("CursorPos",1);
-}
-OLD_TEXT_CLOUD = document.getElementById("Visiblemenu").innerHTML;
-Blosite_Node_Handle(document.body);
-
-function Blosite_Node_Handle(Node)
-{
-	//console.log(Node.children)
-	for(let Z=0;Z<Node.children.length;Z++)
-{
-
-	if(Node.children[Z].nodeName=="BLOSITE")
-	{
-	if (Node.children[Z].hasAttribute("MenuData"))
-	{
-	Node.children[Z].style.visibility = "hidden";
-	continue;
-	} 
-	//If it's the case check for any menu related nodes
-	let A = Node.children[Z];
-	//console.log(A);
-	if(Node.children[Z].children.length==0)
-	{
-	Node.children[Z].innerText = Translate(A.innerText,!A.hasAttribute("Decode"),A.hasAttribute("Menu"),A.hasAttribute("MenuOption"),A.hasAttribute("ForceTranslate"),Node.children[Z],A.hasAttribute("MenuData"));
-	
-
-	}else{
-		for(var Y =0;Y<Node.children[Z].children.length;Y++)
-	{
-		Node.children[Z].children[Y].innerText = Translate(Node.children[Z].children[Y].innerText,!Node.children[Z].children[Y].hasAttribute("Decode"),Node.children[Z].children[Y].hasAttribute("Menu"),Node.children[Z].children[Y].hasAttribute("MenuOption"),Node.children[Z].children[Y].hasAttribute("ForceTranslate"),Node.children[Z].children[Y],Node.children[Z].children[Y].hasAttribute("MenuData"));
-		
-		
-	}
-	}
-	}else if(Node.children[Z].children.length>=0)
-	{
-	Blosite_Node_Handle(Node.children[Z]);		
-	}else{continue;}
-	//document.getElementsByTagName("Blosite")[Z].innerText = Translate(document.getElementsByTagName("Blosite")[Z].innerText,!document.getElementsByTagName("Blosite")[Z].hasAttribute("Decode"),document.getElementsByTagName("Blosite")[Z].hasAttribute("Menu"),document.getElementsByTagName("Blosite")[Z].hasAttribute("MenuOption"),document.getElementsByTagName("Blosite")[Z].hasAttribute("ForceTranslate"),Z,document.getElementsByTagName("Blosite")[Z].hasAttribute("MenuData"));	
-	
-	
-	
-		
-
-	
-	
-	
-}
-}
-//console.log(document.getElementsByTagName("Console_Nez")[0].getElementsByTagName("Blosite")[0].getElementsByTagName("Blosite"));
+var Humaninput= false;
 
 
 
-function Nez_Page(Key)
-{
-	
-let F = document.body.children;
-var NEW = null;
-for(var Q=0;Q<F.length;Q++)
-{
-//console.log(F[Q].querySelectorAll("Blosite["+Key+"]"));
-let E = F[Q].querySelectorAll("Blosite["+Key+"]");
-for(var X=0;X<E.length;X++)
-{
-if(E[X].hasAttribute("menu"))
-{
-NEW = E[X].cloneNode(true);
-//console.log(E[X]);
-break;
-}	
-}
-	
-}
-
-const OLD = document.querySelector("#Visiblemenu");
-console.log();
-NEW.id="Visiblemenu";
-OLD.parentNode.replaceChild(NEW, OLD);
-
-OLD_TEXT_CLOUD=NEW.innerHTML;
-}
-
-function Refresh_Text(Up,Down,Yes)
-{
-
-
-if(Up)
-{
-PLR_CUR.setAttribute("CursorPos",Math.max(1,Number(PLR_CUR.getAttribute("CursorPos")-1)));	
-}
-if(Down)
-{
-PLR_CUR.setAttribute("CursorPos",Math.min(Number(PLR_CUR.getAttribute("CursorMax"))-1,Number(PLR_CUR.getAttribute("CursorPos"))+1));	
-}
-
-if(Yes&&!Noselect)
-{
-PLR_CUR.setAttribute("CursorPos",1);
-Nez_Page(KAYS);
-}else{
-
-}
-PLR_CUR.setAttribute("CursorMax",1);
-document.getElementById("Visiblemenu").innerHTML =OLD_TEXT_CLOUD;
-Blosite_Node_Handle(document.getElementById("Visiblemenu"));
-}
-
-document.onkeypress = function(event){
-    var key_press = String.fromCharCode(event.keyCode);
-	var status = document.getElementById('Gamezone');
-	//console.log(Folder);
-	switch(event.keyCode)
-	{
-		case 115:
-		case 83:
-		Refresh_Text(false,true,false);
-		break;
-		case 87:
-		case 119:
-		Refresh_Text(true,false,false);
-		
-		break;
-		case 32:
-		Refresh_Text(false,false,true);
-		
-		break;
-		default:
-		break;
-	}
-}
 
 
 function Translate(Text,Bakify=true,IsConsole,Selectable,DOITANYWAYS,Blosite_Obj,BulkBlob)
 {
+	
 	if(BulkBlob){//Folder = Blosite_Obj;
 	return'';}
 const Mojibake_Cosmium = {
@@ -271,9 +151,6 @@ const Symbol_Convert = {
 "...":"⌛︎",
 ". . .":"⌛︎",
 
-
-
-
 }
 let TranText = "";
 var casecheck = Text;
@@ -282,54 +159,7 @@ let sOpen = false;
 let dOpen = false;
 Text = Text.toLowerCase();
 var r = 0;
-if(Blosite_Obj == null)
-{}
-else if(Blosite_Obj.hasAttribute("_break"))
-	{
-	Blosite_Obj.style.color = "#FFFA00";
-	KAYS = KAYS;
-	}	
-//IMPORTANT, CHECK IF the listed option contains the Menu tag firstChild
-if(IsConsole || Selectable)
-{
-	
-if(Selectable)
-{
-//console.log(Blosite_Obj);
-Blosite_Obj.setAttribute("NEZID",Number(PLR_CUR.getAttribute("CursorMax")));
-PLR_CUR.setAttribute("CursorMax",Number(PLR_CUR.getAttribute("CursorMax"))+1);
-TranText = casecheck;
-}
-if(DOITANYWAYS)
-{
-TranText = Translate(casecheck,Bakify,false,false,false,Blosite_Obj);
-}
-if(Number(Blosite_Obj.getAttribute("NEZID"))==Number(PLR_CUR.getAttribute("CursorPos")))
-{
-	Noselect = false;
-for(var i=0;i<Blosite_Obj.attributes.length;i++)
-{
-	if(Blosite_Obj.attributes[i].localName.startsWith("_")&&Blosite_Obj.attributes[i].localName!="_break")
-	{
-		KAYS = Blosite_Obj.attributes[i].localName;
-	}else if(Blosite_Obj.attributes[i].localName=="_break")
-	{
-	Blosite_Obj.style.color = "#FFFA00";
-	KAYS = KAYS;
-	Noselect = true;
-	}
-}
-
-TranText +=" <";
-}else if(Blosite_Obj.getAttribute("_break"))
-	{
-	Blosite_Obj.style.color = "#FFFA00";
-	KAYS = KAYS;
-		Noselect = true;
-	}
-return TranText;	
-}
-else if(Bakify)
+if(Bakify)
 {
 		
 for(r=0;r<Text.length;r++)
@@ -354,12 +184,12 @@ if((Text.substr(r,7)).split(".")[0]=="&nez" || Text.substr(r,4)=="<br>"||Text.su
 	while(W<Text.length)
 	{
 	U = W-9;
-		console.log(Text.substr(W,1),U,W);	
+		//console.log(Text.substr(W,1),U,W);	
 	
 	if(Text.substr(W,1)==";")
 	{
 	Calendate = (Text.substr(r,10+U-1).split(".")[2]);
-	console.log(Calendate);
+	//console.log(Calendate);
 	break;
 	}
 	W++;
@@ -562,7 +392,7 @@ if(Text[r]==Mojibake_Cosmium["Mojibakify"][3]||!Object.values(Mojibake_Cosmium).
 TranText += Mojibake_Cosmium["Mojibakify"][3];
 continue;
 }
-console.log(New_READONLY[Text[r]])
+//console.log(New_READONLY[Text[r]])
 if(New_READONLY[Text[r]]=="upperprefix")
 {
 Upper = true;
@@ -633,3 +463,505 @@ function Blos_Convert(translate,Text,mode=0)
 }
 
 //Cooker.next();
+
+//COOOOOOOOKIIIEEEE!!//
+//source : www.w3schools.com//
+
+function Cookie_Monster()
+{
+	document.cookie = "expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;Secure;SameSite=None;";
+}
+//There are secret documents in the archive, entering the password will unlock it
+
+function Inital_Cookie()//Massive cookie with the secret log data flags
+{
+const d = new Date();
+  d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000));
+  let expires = "expires="+d.toUTCString();
+  //"&" is the object splitter
+  //console.log(document.querySelectorAll("Blosite[CookiePagesMeta]")[0]);
+  var data = document.querySelectorAll("Blosite[CookiePagesMeta]")[0].textContent.split(',');
+  for(var I=0;I<data.length;I++)
+  {
+	data[I] +="&false";
+  }
+	//console.log("?"+data.toString()+"?");
+  document.cookie = "Savedas=\"?"+data.toString()+"?\";" + expires + ";SameSite=None;Secure;path=/";
+}
+
+function Mod_Cookie(Name,flag)
+{
+	 if(document.cookie.startsWith("Savedas"))
+ {
+	var A = document.cookie.split("?")[1].split(",");
+	//console.log(A);
+	for(var I=0;I<A.length;I++)
+	{
+	var B = A[I].split("&");
+	if(B[0].toLowerCase()==Name.toLowerCase())
+	{
+	B[1] =  Boolean(flag)
+	}
+	A[I]=B[0]+"&"+B[1];
+	}
+	//console.log(document.cookie);
+	document.cookie="Savedas=\"?"+A.toString()+"?\";" + ";SameSite=None;Secure;path=/";
+	//console.log(document.cookie);
+ }else{
+	//console.log("no cookie. sad");
+	Inital_Cookie()
+ }
+} 
+function Get_Cookie_Secret(Name,flag)
+{
+if(document.cookie.startsWith("Savedas"))
+ {
+	var A = document.cookie.split("?")[1].split(",");
+	//console.log(A);
+	for(var I=0;I<A.length;I++)
+	{
+	var B = A[I].split("&");
+	if(B[0].toLowerCase()==Name.toLowerCase())
+	{
+	//console.log(Boolean(B[1]));
+	return Boolean(B[1]=="true");
+	}
+	}
+ }else{
+	//console.log("no cookie. sad");
+	Inital_Cookie()
+ }
+
+}	
+
+function Cookie_Update()
+{
+
+ //Get all the password flags
+var ModernData = document.querySelectorAll("Blosite[CookiePagesMeta]")[0].textContent.split(',');
+var OldCookie = document.cookie.split("?")[1].split(",");
+//obtain the old flags
+var Collected=[];
+
+	for(var I=0;I<OldCookie.length;I++)
+	{
+	var B = OldCookie[I].split("&");
+	Collected[I]=B[0];
+	}
+  for(var I=0;I<ModernData.length;I++)
+  {
+	  if(!Collected.includes(ModernData[I]))
+	  {
+		OldCookie[I]=(ModernData+"&false"); 
+	  }
+  }
+
+	//console.log(document.cookie);
+	document.cookie="Savedas=\"?"+OldCookie.toString()+"?\";" + ";SameSite=None;Secure;path=/";
+	//console.log(document.cookie);
+}
+
+
+
+
+function checkCookie() {
+ if(document.cookie.startsWith("Savedas"))
+ {
+	//now. UPDATE THE CookieFlag
+	Cookie_Update();
+ }else{
+	//console.log("no cookie. sad");
+	Inital_Cookie()
+ }
+} 
+checkCookie();
+
+//Reworked system below (with my new knowledge of html-js)
+let PERM_input = true;
+let PERM_Passwordscreen = false;
+var SELECT_DATA;
+var SELECTOR_Point=0;
+var SELECTOR_Max=1;
+const COND_Passpage = "_Password_Novau";
+
+var PASS_ref;
+//V Error function V//
+function Errorscreen(txt)
+{
+PERM_input=false;
+
+if(!document.getElementById("Error_Screen"))
+{
+	document.getElementById("Visiblemenu").innerHTML="<b>&lt;O'&gt; We ran into a problem!</b><br>Reason:<br><span id=\"Error_Screen\"class=\"Hate\"></span>";
+document.getElementById("Error_Screen").innerText =txt;
+
+}
+else	
+{
+document.getElementById("Error_Screen").innerText =txt;
+}
+
+}
+//^ Error function ^//
+
+//V Menudata check function V//
+function GET_Menu(start="_Hub",moar)
+{
+	//console.log(moar);
+	var COND_PASSAGE = true;
+	if(PERM_Passwordscreen&&moar.hasAttribute("_VerifyPassword"))
+	{
+	if(document.querySelector("Blosite[input]:not(readonly)").innerText!=Omni_Pass_List[PASS_ref]["Code"].toLowerCase())
+	{
+	document.querySelector("#Visiblemenu span[Announcer]").innerText="Incorrect!";
+	document.querySelector("#Visiblemenu span[Announcer]").className = "Hate";
+	return;
+	}else{
+	document.querySelector("#Visiblemenu span[Announcer]").innerText="Correct!";
+	document.querySelector("#Visiblemenu span[Announcer]").className = "";
+	Mod_Cookie(PASS_ref,true);
+	start =Omni_Pass_List[PASS_ref]["Pass_Page"];
+	}
+	
+	}
+	PERM_Passwordscreen=(start==COND_Passpage);
+	if(PERM_Passwordscreen)
+	{
+	if(!Omni_Pass_List[moar.getAttribute("cookieflag")])
+	{
+	Errorscreen("password key ("+(moar.getAttribute("cookieflag"))+") is invalid");
+	return;
+	}else{
+	PASS_ref = moar.getAttribute("cookieflag");	
+	
+	}
+	}
+if(!document.querySelector("Blosite[MenuData]")&&!document.body.hasAttribute("NoMenu"))	
+{
+Errorscreen("Menudata is missing");
+
+}
+else if(document.querySelectorAll("Blosite[MenuData]").length>1)
+{
+Errorscreen("ONLY ONE instance a Blosite Tag can have the attribute \"MenuData\".\n \""+document.querySelectorAll("Blosite[MenuData]").length+"\" instances of Blosite containing MenuData exist!");	
+
+}
+else
+{
+//once the menu data is found, look for the specified page (_Hub is the default). spit error if the page doesnt exist or duplicates.
+if(document.querySelectorAll("Blosite[MenuData]>Blosite["+start+"]").length==1)
+{
+GET_page(start);
+}else if(document.querySelectorAll("Blosite[MenuData]>Blosite["+start+"]").length>1){//too many
+Errorscreen(document.querySelectorAll("Blosite[MenuData]>Blosite["+start+"]").length+" Copies of \""+start+"\" exist!");
+}else if(document.querySelectorAll("Blosite[MenuData]>Blosite["+start+"]").length<1&&start!="_Hub"){//too little
+console.error("Requested page ("+start+") does not exist!"); //shout at the user
+GET_Menu();//attempt hub find
+}else{
+Errorscreen("Requested page ("+start+") does not exist!");	
+}
+}
+}
+//^ Menudata check function ^//
+
+//V Page get function V//
+function GET_page(Page)
+{
+if (document.querySelectorAll("Blosite[MenuData]>Blosite["+Page+"]").length==0)
+{
+Errorscreen("Requested page ("+Page+") does not exist!");
+}else if(document.querySelectorAll("Blosite[MenuData]>Blosite["+Page+"]").length>1)
+{
+Errorscreen(document.querySelectorAll("Blosite[MenuData]>Blosite["+start+"]").length+" Copies of \""+start+"\" exist!");	
+}else
+{
+PREP_page(Page,document.querySelector("Blosite[MenuData]>Blosite["+Page+"]").hasAttribute("Secure"));
+}
+
+}
+//^ Page get function ^//
+
+//V property managing function V//
+function SET_PERMS(Page,Primal)//Primal is the data from the selected function
+{
+
+}
+//^ property managing function ^//
+
+//V Page Prepare and Set functions V//
+var BLOS;
+function PREP_page(Page,Primal)
+{
+var Temp_ID = 0;
+BLOS = document.createElement("Blosite");
+BLOS = document.querySelector("Blosite[MenuData]>Blosite["+Page+"]").cloneNode(true);
+//console.log(BLOS);
+//console.log(BLOS.querySelectorAll(":not(Blosite[MenuData]>Blosite["+Page+"])"));
+var RESTYLE = BLOS.querySelectorAll(":not(Blosite[MenuData]>Blosite["+Page+"])");
+for(var b=0;b<RESTYLE.length;b++)
+{
+//find the _page attribute
+var Searchquery ="";
+for(var c=0;c<RESTYLE[b].attributes.length;c++)
+{
+	//console.log(RESTYLE[b].attributes[c].localName);
+	if((RESTYLE[b].attributes[c].localName).startsWith("_"))
+	{
+	Searchquery=RESTYLE[b].attributes[c].localName;
+	break;
+	}
+}
+
+//console.log(RESTYLE[b].nodeName);
+if(RESTYLE[b].nodeName=="BLOSITE")
+{
+if(RESTYLE[b].hasAttribute("MenuOption"))
+{
+
+	if(RESTYLE[b].hasAttribute("_break"))
+	{
+		
+		RESTYLE[b].style.color="#FFFF00";
+		RESTYLE[b].setAttribute("Click_Broken","");
+	RESTYLE[b].setAttribute("nezid",Temp_ID);
+	Temp_ID++;
+	}
+	else if(Searchquery=="_verifypassword")
+	{
+	RESTYLE[b].setAttribute("Click_Safe","");
+			RESTYLE[b].setAttribute("nezid",Temp_ID);
+		RESTYLE[b].onclick = function(){
+		Mobilelink_Set(RESTYLE[b]);}
+	Temp_ID++;
+	}
+	else if(document.querySelectorAll("Blosite[MenuData]>Blosite["+Searchquery+"]").length!=1)
+	{
+		RESTYLE[b].style.color="#FF0000";
+		RESTYLE[b].setAttribute("Click_Broken2","");
+	RESTYLE[b].setAttribute("nezid",Temp_ID);
+	Temp_ID++;
+	}
+	else{
+	
+	if(RESTYLE[b].hasAttribute("CookieFlag"))
+	{
+	RESTYLE[b].style.color="#FF00FF";
+	RESTYLE[b].setAttribute("Click_Safe","");
+	if(RESTYLE[b].hasAttribute("RedCode")&&!Get_Cookie_Secret(RESTYLE[b].getAttribute("CookieFlag")))
+	{
+	RESTYLE[b].style.color="#FF0000";
+	RESTYLE[b].setAttribute("Click_Mystry","");
+		RESTYLE[b].setAttribute("nezid",Temp_ID);
+		RESTYLE[b].onclick = function(){
+		Mobilelink_Set(RESTYLE[b]);}
+	Temp_ID++;
+	
+	}else if(Get_Cookie_Secret(RESTYLE[b].getAttribute("CookieFlag"))){
+		RESTYLE[b].setAttribute("nezid",Temp_ID);
+	Temp_ID++;
+	}else{
+	RESTYLE[b].remove();
+	RESTYLE[b+1].remove();
+	}
+	}else{
+	RESTYLE[b].setAttribute("Click_Safe","");
+		RESTYLE[b].setAttribute("nezid",Temp_ID);
+	Temp_ID++;	
+if(RESTYLE[b].hasAttribute("ForceTranslate"))
+{	
+	RESTYLE[b].innerText = Translate(RESTYLE[b].innerText,!RESTYLE[b].hasAttribute("Decode"),RESTYLE[b].hasAttribute("Menu"),RESTYLE[b].hasAttribute("MenuOption"),RESTYLE[b].hasAttribute("ForceTranslate"),RESTYLE[b],RESTYLE[b].hasAttribute("MenuData"));		
+}
+	}
+	}
+}else{
+	if(RESTYLE[b].hasAttribute("Input"))
+	{
+	RESTYLE[b].removeAttribute("READONLY");
+	}
+RESTYLE[b].innerText = Translate(RESTYLE[b].innerText,!RESTYLE[b].hasAttribute("Decode"),RESTYLE[b].hasAttribute("Menu"),RESTYLE[b].hasAttribute("MenuOption"),RESTYLE[b].hasAttribute("ForceTranslate"),RESTYLE[b],RESTYLE[b].hasAttribute("MenuData"));
+
+
+}	
+}
+
+
+}
+//now find ALL blosite nodes THAT ARE NOT IN THE MenuData
+SET_page(Page,Primal)
+}
+function SET_page(Page,Primal)
+{
+if(Primal)
+{
+	document.getElementById("Archivetitle").innerHTML="<span class=\"Apex\" style=\"text-align: center;\"><b>[SECRET LOG {</b> "+document.querySelector("Blosite[MenuData]>Blosite["+Page+"]").getAttribute("Secure")+" <b>}]</b></span>";
+	document.getElementById("Archivetitle").style["text-align"]="center";
+	document.getElementsByTagName("div")[0].className ="Apex";
+	document.getElementsByTagName("div")[1].className ="Apex";
+	}else{
+	document.getElementById("Archivetitle").innerHTML="Genjituyon Archives";
+		document.getElementsByTagName("div")[0].className ="";
+		document.getElementById("Archivetitle").style["text-align"]="left";
+		document.getElementById("Archivetitle").style.left="10%";
+	document.getElementsByTagName("div")[1].className ="";
+	}
+document.getElementById("Visiblemenu").innerHTML = BLOS.innerHTML;
+//console.log(document.querySelectorAll("#Visiblemenu :not(Blosite[MenuData]>Blosite["+Page+"]):not(br)"));//Now we finish setting it up
+var BLOS2 = document.querySelectorAll("#Visiblemenu :not(Blosite[MenuData]>Blosite["+Page+"]):not(br)");
+for(var b=0;b<BLOS2.length;b++)
+{
+	if(BLOS2[b].hasAttribute("Click_Mystry")||BLOS2[b].hasAttribute("Click_Safe")){
+	let I = BLOS2[b];
+	BLOS2[b].onclick = function(){
+	Mobilelink_Set(document.querySelector("Blosite[NEZID=\""+I.getAttribute("NEZID")+"\"]"));}
+	}
+}
+	
+}
+//^ Page Prepare and Set functions ^//
+
+
+
+//V Mouse/select function V//
+function Mobilelink_Set(Blosite_Obj)
+{
+	if(!PERM_input){return;}
+	usingtouch=true;
+	console.warn(Blosite_Obj.hasAttribute("RedCode"));
+	SELECTOR_Point = Number(Blosite_Obj.getAttribute("nezid"));
+	//same search query
+	var Searchquery ="";
+for(var c=0;c<Blosite_Obj.attributes.length;c++)
+{
+	if((Blosite_Obj.attributes[c].localName).startsWith("_"))
+	{
+	Searchquery=Blosite_Obj.attributes[c].localName;
+	break;
+	}
+}
+	GET_Menu(Blosite_Obj.hasAttribute("RedCode")&&!Get_Cookie_Secret(Blosite_Obj.getAttribute("cookieflag"))?"_Password_Novau":Searchquery,Blosite_Obj,Searchquery);
+}
+
+//^ Mouse/select function ^//
+
+//V Password writing function V//
+document.addEventListener('keydown',function(event){
+if(!PERM_Passwordscreen){return;}
+	var key = event.key;
+const NO_Keys=["shift","control","alt",
+"f1",
+"f2",
+"f3",
+"f4",
+"f5",
+"f6",
+"f7",
+"f8",
+"f9",
+"f10",
+"f11",
+"f12",
+"os",
+"tab",
+"capslock",
+"enter",
+"home",
+"end",
+"delete",
+"escape",
+"insert",
+"pageup",
+"pagedown",
+];
+if(NO_Keys.includes(key.toLowerCase())){return;}
+if(key=="Backspace")
+	{
+	if(document.querySelectorAll("Blosite[input]")[0].innerHTML.length==1)
+	{
+	document.querySelectorAll("Blosite[input]")[0].innerHTML="";	
+	}else{
+
+	document.querySelectorAll("Blosite[input]")[0].innerHTML=document.querySelectorAll("Blosite[input]")[0].innerHTML.slice(0,document.querySelectorAll("Blosite[input]")[0].innerHTML.length-1);}
+	}else{
+	document.querySelectorAll("Blosite[input]")[0].innerHTML+=key.toLowerCase();	
+	}
+}
+);
+//^ Password writing function ^//
+//V Initalize stuff V//
+
+GET_Menu();
+const CORRUPTFUCK_BOMB = true; //Make sure to disable before fixing issues.
+
+	/*!
+devtools-detect
+https://github.com/sindresorhus/devtools-detect
+By Sindre Sorhus
+MIT License
+*/
+
+const devtools = {
+	isOpen: false,
+	orientation: undefined,
+};
+
+const threshold = 160;
+
+const emitEvent = (isOpen, orientation) => {
+	globalThis.dispatchEvent(new globalThis.CustomEvent('devtoolschange', {
+		detail: {
+			isOpen,
+			orientation,
+		},
+	}));
+};
+
+const main = ({emitEvents = true} = {}) => {
+	const widthThreshold = globalThis.outerWidth - globalThis.innerWidth > threshold;
+	const heightThreshold = globalThis.outerHeight - globalThis.innerHeight > threshold;
+	const orientation = widthThreshold ? 'vertical' : 'horizontal';
+
+	if (
+		!(heightThreshold && widthThreshold)
+		&& ((globalThis.Firebug && globalThis.Firebug.chrome && globalThis.Firebug.chrome.isInitialized) || widthThreshold || heightThreshold)
+	) {
+		if ((!devtools.isOpen || devtools.orientation !== orientation) && emitEvents) {
+			emitEvent(true, orientation);
+		}
+
+		devtools.isOpen = true;
+		devtools.orientation = orientation;
+	} else {
+		if (devtools.isOpen && emitEvents) {
+			emitEvent(false, undefined);
+		}
+
+		devtools.isOpen = false;
+		devtools.orientation = undefined;
+	}
+};
+
+main({emitEvents: false});
+setInterval(main, 100);
+function Corruption_Bomb(Text)
+{
+var Bomb="";
+const CorruptList = [" ","0","1","2","3","4","5","6","7","8","9",".","?","!",",","/",":",";","-","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",]
+for(var L=0;L<Text.length;L++)
+{
+Bomb+=CorruptList[Math.floor(Math.random()*CorruptList.length)];
+}
+return "<b>Bomb activated!</b><br>"+Translate(Bomb)+"";
+}
+
+
+if(devtools.isOpen&&CORRUPTFUCK_BOMB)
+{
+document.documentElement.innerHTML=Corruption_Bomb(document.documentElement.innerHTML)
+}
+
+window.addEventListener('devtoolschange', event => {
+if(devtools.isOpen&&CORRUPTFUCK_BOMB)
+{
+document.documentElement.innerHTML=Corruption_Bomb(document.documentElement.innerHTML)
+}
+	});
