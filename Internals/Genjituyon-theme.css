@@ -1,19 +1,42 @@
-span{text-align:center;}
-	span.Apex{color:#FF00AA;}
-	span.Const{color:#FFFA00;}
-	span.Nezu{color:#00AAFF;}
-	span.Kits{color:#FFAA00;}
-	span.Gian{color:#AA00FF;}
-	span.Meta{color:#FFAAFF;}
-	span.Snow{color:#FFFFFF;}
-	span.NNS{color:#0AFF0A;}
-  
-body{
-	background-color:#000;
-	color:	#0F0;
-	font-size: 22px;
+hr,div{z-index:69;
+  border: 2px dashed;
+  color:#0F0;
+}
+span{text-align:center;
+user-select: text; /* supported by Chrome and Opera */
+   -webkit-user-select: text; /* Safari */
+   -khtml-user-select: text; /* Konqueror HTML */
+   -moz-user-select: text; /* Firefox */
+   -ms-user-select: text; /* Internet Explorer/Edge */
 
 }
+	span.Apex,hr.Apex,Blosite[CookieFlag],div.Apex{color:#FF00AA;}
+	span.Const,hr.Const{color:#FFFA00;}
+	span.Nezu,hr.Nezu{color:#00AAFF;}
+	span.Kits,hr.Kits{color:#FFAA00;}
+	span.Gian,hr.Gian{color:#AA00FF;}
+	span.Meta,hr.Meta{color:#FFAAFF;}
+	span.Snow,hr.Snow{color:#FFFFFF;}
+	span.NNS,hr.NNS{color:#0AF00A;}
+	span.Spider,hr.Spider{color:#1784a6;}
+	span.Hate,hr.Hate{color:#FF0000;}
+	
+  span[Chatbuddy]{text-align: left;
+   display: block;}
+   span[Chatowner]{text-align: right;
+   display: block;}
+body{
+background-color:#060004;
+	color:	#0F0;
+	font-size: 22px;
+	user-select: none; /* supported by Chrome and Opera */
+   -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+   -moz-user-select: none; /* Firefox */
+   -ms-user-select: none; /* Internet Explorer/Edge */
+   overflow-anchor: none;
+}
+
 textarea,button{
 	background-color:#000;
 	color:	#0F0;
@@ -31,3 +54,24 @@ padding-top:1%;
 td{border: 1px solid green;text-align:center;}
 div{border: 1px solid green;}
 	Blosite[MenuData]{top:100%;position:fixed;font-size: 0px;visibility:hidden;}
+	Blosite[CHATLOG_RETURN]{bottom:2%;position:fixed;z-index:30;}
+Blosite{
+	
+	user-select: text; /* supported by Chrome and Opera */
+   -webkit-user-select: text; /* Safari */
+   -khtml-user-select: text; /* Konqueror HTML */
+   -moz-user-select: text; /* Firefox */
+   -ms-user-select: text; /* Internet Explorer/Edge */
+}
+	
+Blosite[MenuOption]{user-select: none; /* supported by Chrome and Opera */
+   -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+   -moz-user-select: none; /* Firefox */
+   -ms-user-select: none; /* Internet Explorer/Edge */	
+	}
+
+Blosite[Click_Safe]:hover{font-weight: bold;cursor:pointer;}
+Blosite[Click_Broken]:hover{font-weight:bold;cursor: not-allowed;}
+Blosite[Click_Broken2]:hover{cursor: not-allowed;}
+Blosite[RedCode]:hover{font-weight: bold;cursor:Click_Mystry;}
