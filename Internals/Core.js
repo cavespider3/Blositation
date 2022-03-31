@@ -1,4 +1,4 @@
-</sub>/*
+/*
 If you're somehow reading this, please keep the passcodes a secret
 it ruins the fun of discovering the secret logs, so if you could, please...
 "kindly piss off"
