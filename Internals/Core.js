@@ -1,7 +1,14 @@
+</sub>/*
+If you're somehow reading this, please keep the passcodes a secret
+it ruins the fun of discovering the secret logs, so if you could, please...
+"kindly piss off"
+*/
+const Super_Debug = false;
+
   const Omni_Pass_List={
-	"TimeMouseKey_000":{"Code":"Locua","Pass_Page":"_Killertoy_NovaLog_PA_000"},
-	"TimeMouseKey_001":{"Code":"ackt-006","Pass_Page":"_Killertoy_NovaLog_PA_001"},
-	
+	"TimeMouseKey_000":{"Code":"Darkness","Pass_Page":"_Killertoy_NovaLog_PA_000"},
+	"TimeMouseKey_001":{"Code":"Overload","Pass_Page":"_Killertoy_NovaLog_PA_001"},
+	"TimeMouseKey_002":{"Code":"Lilac","Pass_Page":"_Killertoy_NovaLog_PA_002"},
 }; 
 var usingtouch=false;
 var passdata_cloud;
@@ -607,7 +614,7 @@ function GET_Menu(start="_Hub",moar)
 	var COND_PASSAGE = true;
 	if(PERM_Passwordscreen&&moar.hasAttribute("_VerifyPassword"))
 	{
-	if(document.querySelector("Blosite[input]:not(readonly)").innerText!=Omni_Pass_List[PASS_ref]["Code"].toLowerCase())
+	if(document.querySelector("Blosite[input]:not(readonly)").innerText.toLowerCase()!=Omni_Pass_List[PASS_ref]["Code"].toLowerCase())
 	{
 	document.querySelector("#Visiblemenu span[Announcer]").innerText="Incorrect!";
 	document.querySelector("#Visiblemenu span[Announcer]").className = "Hate";
@@ -677,6 +684,36 @@ PREP_page(Page,document.querySelector("Blosite[MenuData]>Blosite["+Page+"]").has
 }
 //^ Page get function ^//
 
+//V super text function V//
+function Create_SuperText(Node)
+{
+var Searchquery ="";
+for(var c=0;c<Node.attributes.length;c++)
+{
+	//console.log(RESTYLE[b].attributes[c].localName);
+	if((Node.attributes[c].localName).startsWith("_"))
+	{
+	Searchquery=Node.attributes[c].localName;
+	break;
+	}
+}
+if(Super_Debug)
+{
+return"<sub> ["+(Node.hasAttribute("nezid")?"nezid["+Node.getAttribute("nezid")+"] ":"")+(Node.hasAttribute(Searchquery)?"\'"+Searchquery+"\' ":"")+(Node.hasAttribute("CookieFlag")?"CookieFlag["+Node.getAttribute("CookieFlag")+"] ":"")+"]</sub>";
+
+
+
+}	
+else{
+return"";	
+}
+}
+
+
+
+//^ super text function ^//
+
+
 //V property managing function V//
 function SET_PERMS(Page,Primal)//Primal is the data from the selected function
 {
@@ -720,6 +757,7 @@ if(RESTYLE[b].hasAttribute("MenuOption"))
 		RESTYLE[b].style.color="#FFFF00";
 		RESTYLE[b].setAttribute("Click_Broken","");
 	RESTYLE[b].setAttribute("nezid",Temp_ID);
+	RESTYLE[b].innerHTML+=Create_SuperText(RESTYLE[b]);
 	Temp_ID++;
 	}
 	else if(Searchquery=="_verifypassword")
@@ -728,6 +766,7 @@ if(RESTYLE[b].hasAttribute("MenuOption"))
 			RESTYLE[b].setAttribute("nezid",Temp_ID);
 		RESTYLE[b].onclick = function(){
 		Mobilelink_Set(RESTYLE[b]);}
+		RESTYLE[b].innerHTML+=Create_SuperText(RESTYLE[b]);
 	Temp_ID++;
 	}
 	else if(document.querySelectorAll("Blosite[MenuData]>Blosite["+Searchquery+"]").length!=1)
@@ -735,6 +774,7 @@ if(RESTYLE[b].hasAttribute("MenuOption"))
 		RESTYLE[b].style.color="#FF0000";
 		RESTYLE[b].setAttribute("Click_Broken2","");
 	RESTYLE[b].setAttribute("nezid",Temp_ID);
+	RESTYLE[b].innerHTML+=Create_SuperText(RESTYLE[b]);
 	Temp_ID++;
 	}
 	else{
@@ -751,10 +791,11 @@ if(RESTYLE[b].hasAttribute("MenuOption"))
 		RESTYLE[b].onclick = function(){
 		Mobilelink_Set(RESTYLE[b]);}
 	Temp_ID++;
-	
+	RESTYLE[b].innerHTML+=Create_SuperText(RESTYLE[b]);
 	}else if(Get_Cookie_Secret(RESTYLE[b].getAttribute("CookieFlag"))){
 		RESTYLE[b].setAttribute("nezid",Temp_ID);
 	Temp_ID++;
+	RESTYLE[b].innerHTML+=Create_SuperText(RESTYLE[b]);
 	}else{
 	RESTYLE[b].remove();
 	RESTYLE[b+1].remove();
@@ -767,6 +808,7 @@ if(RESTYLE[b].hasAttribute("ForceTranslate"))
 {	
 	RESTYLE[b].innerText = Translate(RESTYLE[b].innerText,!RESTYLE[b].hasAttribute("Decode"),RESTYLE[b].hasAttribute("Menu"),RESTYLE[b].hasAttribute("MenuOption"),RESTYLE[b].hasAttribute("ForceTranslate"),RESTYLE[b],RESTYLE[b].hasAttribute("MenuData"));		
 }
+RESTYLE[b].innerHTML+=Create_SuperText(RESTYLE[b]);
 	}
 	}
 }else{
@@ -878,7 +920,7 @@ if(key=="Backspace")
 
 	document.querySelectorAll("Blosite[input]")[0].innerHTML=document.querySelectorAll("Blosite[input]")[0].innerHTML.slice(0,document.querySelectorAll("Blosite[input]")[0].innerHTML.length-1);}
 	}else{
-	document.querySelectorAll("Blosite[input]")[0].innerHTML+=key.toLowerCase();	
+	document.querySelectorAll("Blosite[input]")[0].innerHTML+=key;	
 	}
 }
 );
@@ -974,8 +1016,10 @@ return Translate(Totext,true,null,null,null,null,null,Debreaker);
 //^ link Shortcut crypter ^//
 
 //V Initalize stuff V//
-BACKDOOR(false,"TimeMouseKey_000")
-GET_Menu(BACKDOOR(true)[0],BACKDOOR(true)[1]);
+//BACKDOOR(false,"TimeMouseKey_001");
+//BACKDOOR(false,"TimeMouseKey_000");
+//BACKDOOR(false,"TimeMouseKey_002");
+GET_Menu(!BACKDOOR(true)?undefined:BACKDOOR(true)[0],!BACKDOOR(true)?undefined:BACKDOOR(true)[1]);
 const CORRUPTFUCK_BOMB = true; //Make sure to disable before fixing issues.
 
 	/*!
