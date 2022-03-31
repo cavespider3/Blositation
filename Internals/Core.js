@@ -28,16 +28,6 @@ document.getElementById("ResultHUMAN").innerHTML = Translate(document.getElement
 
 }
 
-function Nez_Scout()//sudo get, returns page
-{
-try{
-if(window.location.href.split("?")[1].split("&")[0] =="_Passcade")
-{
-return !window.location.href.split("?")[1]?null:window.location.href.split("?")[1].split("&");	
-}
-return !window.location.href.split("?")[1]?null:window.location.href.split("?")[1].split("&")[0];
-}catch(e){!window.location.href.split("?")[1]?null:window.location.href.split("?")[1].split("&")[0];}
-}
 
 //The massive code that handles the Blosite language and special text handlers//
 
@@ -57,12 +47,12 @@ var Humaninput= false;
 
 
 
-function Translate(Text,Bakify=true,IsConsole,Selectable,DOITANYWAYS,Blosite_Obj,BulkBlob)
+function Translate(Text,Bakify=true,IsConsole,Selectable,DOITANYWAYS,Blosite_Obj,BulkBlob,ReplacementList)
 {
-	
+
 	if(BulkBlob){//Folder = Blosite_Obj;
 	return'';}
-const Mojibake_Cosmium = {
+var Mojibake_Cosmium = !ReplacementList?{
 "Mojibakify":["░","▒","▓","�"],
 "upperprefix":"◹",
 "lowerprefix":"◿",
@@ -105,6 +95,7 @@ const Mojibake_Cosmium = {
 "x":"▩",
 "y":"▽",
 "z":"◈",
+"_":"▬",
 /*
 	■	□	▢	▣	▤	▥	▦	▧	▨	▩	▪	▫	▬	▭	▮	▯
 U+25Bx	▰	▱	▲	△	▴	▵	▶	▷	▸	▹	►	▻	▼	▽	▾	▿
@@ -128,7 +119,8 @@ U+25Fx	◰	◱	◲	◳	◴	◵	◶	◷	◸	◹	◺	◻	◼	◽	◾	◿
 "*":"❆",
 "$":"⯏",
 "|":"⬗"
-};
+}:ReplacementList;
+//console.log(Mojibake_Cosmium);
 const Id10t_Fixer = ["zero","one",
 "two",
 "three",
@@ -365,6 +357,10 @@ TranText += Mojibake_Cosmium["Mojibakify"][3];
 //.isUpperCase();
 
 }else{
+	if(!ReplacementList){}else{
+	Mojibake_Cosmium = ReplacementList;	
+	}
+	//console.log(Mojibake_Cosmium)
 const FlipObject=function(OBJECT_){
 let Mirror = new Object();
 let AA = Object.keys(OBJECT_);
@@ -887,9 +883,99 @@ if(key=="Backspace")
 }
 );
 //^ Password writing function ^//
-//V Initalize stuff V//
 
-GET_Menu();
+//V link Shortcut crypter V//
+function BACKDOOR(Unscrew=true,Totext)
+{
+var hack = window.location.href.split("?")[1];
+console.log(hack)
+ if(!hack)
+ {
+	hack = Totext;
+ }
+if(!hack&&!Totext)
+ {return;}	
+const Debreaker	={
+	"Mojibakify":["░","▒","▓","�"],
+"upperprefix":"◹",
+"lowerprefix":"◿",
+"opensing":"▹",
+"opendoub":"▸",
+"closesing":"◃",
+"closedoub":"◂",
+".":"❯",
+"?":"○",
+"!":"◊",
+",":"◦",
+"/":"✦",
+":":"◬",
+";":"◕",
+"-":"✏",
+	
+"z":"■",
+"y":"□",
+"x":"◎",
+"a":"▣",
+"b":"▤",
+"c":"◶",
+"w":"▦",
+"v":"▧",
+"u":"▨",
+"d":"◴",
+"e":"◇",
+"f":"◫",
+"t":"◭",
+"s":"◮",
+"r":"◍",
+"g":"◗",
+"h":"◖",
+"i":"◤",
+"q":"◧",
+"p":"◳",
+"o":"◢",
+"j":"▼",
+"k":"◣",
+"l":"▩",
+"n":"▽",
+"m":"◈",
+"_":"▬",
+"zero":"▖",
+"nine":"▗",
+"eight":"▝",
+"six":"▘",
+"seven":"▚",
+"four":"▛",
+"five":"▜",
+"three":"▙",
+"two":"▟",
+"one":"▞",
+}
+if(Unscrew)//This to text to blosite back to text
+{
+	//console.log(Translate(Totext.toLowerCase(),false,null,null,null,null,null,Debreaker));
+	const Result = Translate(decodeURIComponent(hack),false,null,null,null,null,null,Debreaker);
+	if(Object.keys(Omni_Pass_List).includes(Result))
+	{
+	console.log(":0")	
+	var Dummy_Pagedata = document.createElement("Blosite");
+	Dummy_Pagedata.setAttribute("CookieFlag",Result)
+	
+	return [!Get_Cookie_Secret(Result)?"_Password_Novau":Omni_Pass_List[Result]["Pass_Page"],Dummy_Pagedata]
+	}else{
+		
+		
+	}
+}else{
+console.log(Translate(Totext,true,null,null,null,null,null,Debreaker));
+return Translate(Totext,true,null,null,null,null,null,Debreaker);
+}
+	
+}
+//^ link Shortcut crypter ^//
+
+//V Initalize stuff V//
+BACKDOOR(false,"TimeMouseKey_000")
+GET_Menu(BACKDOOR(true)[0],BACKDOOR(true)[1]);
 const CORRUPTFUCK_BOMB = true; //Make sure to disable before fixing issues.
 
 	/*!
