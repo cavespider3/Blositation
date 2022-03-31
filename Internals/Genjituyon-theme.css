@@ -56,14 +56,14 @@ div{border: 1px solid green;}
 	Blosite[MenuData]{top:100%;position:fixed;font-size: 0px;visibility:hidden;}
 	Blosite[CHATLOG_RETURN]{bottom:2%;position:fixed;z-index:30;}
 Blosite{
-	
+	font-size: 22px;
 	user-select: text; /* supported by Chrome and Opera */
    -webkit-user-select: text; /* Safari */
    -khtml-user-select: text; /* Konqueror HTML */
    -moz-user-select: text; /* Firefox */
    -ms-user-select: text; /* Internet Explorer/Edge */
 }
-	
+h3{font-size: 23px;}
 Blosite[MenuOption]{user-select: none; /* supported by Chrome and Opera */
    -webkit-user-select: none; /* Safari */
    -khtml-user-select: none; /* Konqueror HTML */
