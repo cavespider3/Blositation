@@ -1,0 +1,196 @@
+img[CF_Icon]{
+	z-index:5;
+  image-rendering: pixelated;
+position:relative;
+ display:inline;
+   object-fit: contain;
+   padding:0px;
+margin:0px;
+  object-position: -0px -0px;
+width:512px;
+}
+div[CF_Icon]:hover {
+	transform: scale(1.2,1.2) rotate(1deg);
+	z-index:999;
+}
+ img[CF_Icon]:hover{
+	z-index:999;
+}
+div[CF_Icon]{
+	transition: transform 0.3s;
+	display:inline-block;
+	vertical-align:middle;
+	z-index:2;
+width:32px;
+padding:0px;
+margin:0px;
+height:32px;
+
+overflow:hidden;border: 0px solid black;
+}
+/*/Elements/*/
+img[CF_Icon=EL_Fire]{
+  object-position: -32px -32px;
+}
+img[CF_Icon=EL_Water]{
+  object-position: -64px -32px;
+}
+img[CF_Icon=EL_Thunder]{
+  object-position: -96px -32px;
+}
+img[CF_Icon=EL_Cosmium]{
+  object-position: -128px -32px;
+}
+img[CF_Icon=EL_Earth]{
+  object-position: -160px -32px;
+}
+img[CF_Icon=EL_Ice]{
+  object-position: -192px -32px;
+}
+img[CF_Icon=EL_Bomb]{
+  object-position: -224px -32px;
+}
+img[CF_Icon=EL_Wind]{
+  object-position: -256px -32px;
+}
+img[CF_Icon=EL_Holy]{
+  object-position: -288px -32px;
+}
+img[CF_Icon=EL_Dark]{
+  object-position: -320px -32px;
+}
+img[CF_Icon=EL_Null]{
+  object-position: -352px -32px;
+}
+
+/*/Stat buffs/*/
+img[CF_Icon=PA_Heart_01]{object-position: -0px -64px;}
+img[CF_Icon=HS_Heart_01]{object-position: -0px -96px;}
+img[CF_Icon=Beam_Dagger_01]{object-position: -64px -64px;}
+img[CF_Icon=SB_Shield_01]{object-position: -96px -64px;}
+img[CF_Icon=SB_MagicAttack_01]{object-position: -128px -64px;}
+img[CF_Icon=SB_MagicDefense_01]{object-position: -160px -64px;}
+img[CF_Icon=SB_Evade_01]{object-position: -192px -64px;}
+img[CF_Icon=Beam_Dagger_02]{object-position: -64px -96px;}
+img[CF_Icon=SB_Shield_02]{object-position: -96px -96px;}
+img[CF_Icon=SB_MagicAttack_02]{object-position: -128px -96px;}
+img[CF_Icon=SB_MagicDefense_02]{object-position: -160px -96px;}
+img[CF_Icon=SB_Evade_02]{object-position: -192px -96px;}
+/*/Status Effects/*/
+img[CF_Icon=SE_Burn]{object-position: -0px -128px;}
+img[CF_Icon=SE_Confuse]{object-position: -32px -128px;}
+img[CF_Icon=SE_Shock]{object-position: -64px -128px;}
+img[CF_Icon=SE_Glitch]{object-position: -96px -128px;}
+img[CF_Icon=SE_Cheese]{object-position: -128px -128px;}
+img[CF_Icon=SE_Corrupted]{object-position: -160px -128px;}
+img[CF_Icon=SE_Syphon]{object-position: -192px -128px;}
+img[CF_Icon=SE_Scorch]{object-position: -224px -128px;}
+img[CF_Icon=SE_Random]{object-position: -256px -128px;}
+img[CF_Icon=SE_Heavy]{object-position: -288px -128px;}
+img[CF_Icon=SE_Light]{object-position: -320px -128px;}
+img[CF_Icon=SE_Haste]{object-position: -352px -128px;}
+img[CF_Icon=SE_Defend]{object-position: -384px -128px;}
+img[CF_Icon=SE_Revive]{object-position: -416px -128px;}
+img[CF_Icon=SE_Regen]{object-position: -448px -128px;}
+img[CF_Icon=SE_Brave]{object-position: -480px -128px;}
+
+img[CF_Icon=SE_Stagger]{object-position: -0px -160px;}
+img[CF_Icon=SE_Freeze]{object-position: -32px -160px;}
+img[CF_Icon=SE_Chill]{object-position: -64px -160px;}
+img[CF_Icon=SE_Doom]{object-position: -96px -160px;}
+img[CF_Icon=SE_Spaghetti],img[CF_Icon=SE_Pasta]{object-position: -128px -160px;}
+img[CF_Icon=SE_Death]{object-position: -160px -160px;}
+img[CF_Icon=SE_StitchlingCurse]{object-position: -192px -160px;}
+img[CF_Icon=SE_Dry]{object-position: -224px -160px;}
+img[CF_Icon=SE_Wet]{object-position: -256px -160px;}
+img[CF_Icon=SE_Agro]{object-position: -288px -160px;}
+img[CF_Icon=SE_Target]{object-position: -320px -160px;}
+img[CF_Icon=SE_Bless]{object-position: -352px -160px;}
+img[CF_Icon=SE_Morale]{object-position: -384px -160px;}
+img[CF_Icon=SE_Invisible]{object-position: -416px -160px;}
+img[CF_Icon=SE_Enchanted]{object-position: -448px -160px;}
+
+
+/*/Skills/*/
+
+img[CF_Icon=Skill_AeroNorm]{object-position: -0px -192px;}
+img[CF_Icon=Skill_DowserRods]{object-position: -32px -192px;}
+img[CF_Icon=Skill_YoYo]{object-position: -64px -192px;}
+img[CF_Icon=Skill_MoonMan]{object-position: -96px -192px;}
+img[CF_Icon=Skill_Pendulum]{object-position: -128px -192px;}
+img[CF_Icon=Skill_BombArrow]{object-position: -160px -192px;}
+img[CF_Icon=Skill_AquaArrow]{object-position: -192px -192px;}
+img[CF_Icon=Skill_CynthSusollo],img[CF_Icon=Skill_TruePower]{object-position: -224px -192px;}
+img[CF_Icon=Skill_DowserRods_2]{object-position: -256px -192px;}
+img[CF_Icon=Skill_Heal]{object-position: -288px -192px;}
+img[CF_Icon=Skill_GlitchStrike]{object-position: -320px -192px;}
+img[CF_Icon=Skill_Tornado]{object-position: -352px -192px;}
+img[CF_Icon=Skill_BlackHole]{object-position: -384px -192px;}
+img[CF_Icon=Skill_MetaHack]{object-position: -416px -192px;}
+img[CF_Icon=Skill_Mouse]{object-position: -448px -192px;}
+img[CF_Icon=Skill_ChefApollo]{object-position: -480px -192px;}
+
+img[CF_Icon=Skill_CynthNorm]{object-position: -0px -224px;}
+img[CF_Icon=Skill_AeroFan]{object-position: -32px -224px;}
+img[CF_Icon=Skill_CosmiumGunner]{object-position: -64px -224px;}
+img[CF_Icon=Skill_ThunderGunner]{object-position: -96px -224px;}
+img[CF_Icon=Skill_DowserDrowner]{object-position: -128px -224px;}
+img[CF_Icon=Skill_DawnDowser]{object-position: -160px -224px;}
+img[CF_Icon=Skill_FanWhirlwind]{object-position: -192px -224px;}
+img[CF_Icon=Skill_IceSword]{object-position: -224px -224px;}
+img[CF_Icon=Skill_OverClock]{object-position: -256px -224px;}
+img[CF_Icon=Skill_TimePiece],img[CF_Icon=Skill_Hourglass]{object-position: -288px -224px;}
+img[CF_Icon=Skill_ShieldDecay]{object-position: -320px -224px;}
+img[CF_Icon=Skill_ShadowShot]{object-position: -352px -224px;}
+img[CF_Icon=Skill_HolyLight]{object-position: -384px -224px;}
+img[CF_Icon=Skill_FrozenHeart]{object-position: -416px -224px;}
+img[CF_Icon=Skill_NOU],img[CF_Icon=Skill_Reverse]{object-position: -448px -224px;}
+img[CF_Icon=Skill_Random]{object-position: -480px -224px;}
+
+img[CF_Icon=Skill_Bubble]{object-position: -0px -256px;}
+img[CF_Icon=Skill_Monolith]{object-position: -32px -256px;}
+img[CF_Icon=Skill_Star]{object-position: -64px -256px;}
+img[CF_Icon=Skill_DuskDowser]{object-position: -96px -256px;}
+img[CF_Icon=Skill_DowserDrowner]{object-position: -128px -256px;}
+img[CF_Icon=Skill_BlessedDowser]{object-position: -160px -256px;}
+img[CF_Icon=Skill_AirShock]{object-position: -192px -256px;}
+img[CF_Icon=Skill_Energy]{object-position: -224px -256px;}
+img[CF_Icon=Skill_DustDevil]{object-position: -256px -256px;}
+img[CF_Icon=Skill_Claw],img[CF_Icon=Skill_Hourglass]{object-position: -288px -256px;}
+
+/*/Misc/*/
+img[CF_Icon=Misc_Jester]{object-position: -288px -256px;}
+img[CF_Icon=Misc_Target]{object-position: -320px -256px;}
+img[CF_Icon=Misc_Flag]{object-position: -256px -256px;}
+
+/*/Items/*/
+img[CF_Icon=Gen_Coin_Old]{
+  object-position: -224px -64px;
+}
+img[CF_Icon=Item_HealthBoost]{object-position: -0px -320px;}
+img[CF_Icon=Item_EvadeBoost]{object-position: -32px -320px;}
+img[CF_Icon=Item_AttackBoost]{object-position: -64px -320px;}
+img[CF_Icon=Item_MagicBoost]{object-position: -96px -320px;}
+img[CF_Icon=Item_DefenceBoost]{object-position: -128px -320px;}
+img[CF_Icon=Item_InfinityCherries]{object-position: -160px -320px;}
+
+img[CF_Icon=Item_WindStone]{object-position: -0px -352px;}
+img[CF_Icon=Item_SilverBirch]{object-position: -32px -352px;}
+img[CF_Icon=Item_RoughCrystal]{object-position: -64px -352px;}
+img[CF_Icon=Item_Voidainium]{object-position: -96px -352px;}
+img[CF_Icon=Item_MoonChunk]{object-position: -128px -352px;}
+img[CF_Icon=Item_Pendulum]{object-position: -160px -352px;}
+img[CF_Icon=Item_Battery]{object-position: -192px -352px;}
+img[CF_Icon=Item_GianiumFur]{object-position: -224px -352px;}
+img[CF_Icon=Item_Nano]{object-position: -256px -352px;}
+img[CF_Icon=Item_FloriumSap]{object-position: -288px -352px;}
+img[CF_Icon=Item_FloriumBranch]{object-position: -320px -352px;}
+img[CF_Icon=Item_Geodes]{object-position: -352px -352px;}
+img[CF_Icon=Item_PowerSoundate]{object-position: -384px -352px;}
+img[CF_Icon=Item_CinnamonOak]{object-position: -416px -352px;}
+
+img[CF_Icon=Item_CandleFruit]{object-position: -0px -512px;}
+img[CF_Icon=Item_LanturnFruit]{object-position: -32px -512px;}
+img[CF_Icon=Item_Chandeberries]{object-position: -64px -512px;}
+img[CF_Icon=Item_StitchlingLemon]{object-position: -96px -512px;}
+img[CF_Icon=Item_SeaSlugberries]{object-position: -128px -512px;}

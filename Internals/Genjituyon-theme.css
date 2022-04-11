@@ -1,3 +1,6 @@
+
+@import "CF_IconArray.css";
+
 hr,div{z-index:69;
   border: 2px dashed;
   color:#0F0;
@@ -26,6 +29,7 @@ user-select: text; /* supported by Chrome and Opera */
    span[Chatowner]{text-align: right;
    display: block;}
 body{
+	overflow:auto;
 background-color:#060004;
 	color:	#0F0;
 	font-size: 22px;
@@ -36,6 +40,21 @@ background-color:#060004;
    -ms-user-select: none; /* Internet Explorer/Edge */
    overflow-anchor: none;
 }
+/*width:128px;
+height:128px;
+  max-width:22px;
+max-height:22px;
+
+  image-rendering: pixelated;
+  display:inline;
+  vertical-align:middle;
+   object-fit: none;
+  object-position: -384px -512px;
+width:128px;
+height:128px;
+
+*/
+
 
 textarea,button{
 	background-color:#000;
@@ -53,7 +72,7 @@ padding-top:1%;
 }
 td{border: 1px solid green;text-align:center;}
 div{border: 1px solid green;}
-	Blosite[MenuData]{top:100%;position:fixed;font-size: 0px;visibility:hidden;}
+	Blosite[MenuData]{top:100%;position:fixed;font-size: 0px; visibility:hidden;}
 	Blosite[CHATLOG_RETURN]{bottom:2%;position:fixed;z-index:30;}
 Blosite{
 	font-size: 22px;
