@@ -3,6 +3,10 @@ If you're somehow reading this, please keep the passcodes a secret
 it ruins the fun of discovering the secret logs, so if you could, please...
 "kindly piss off"
 */
+
+const CORRUPTFUCK_BOMB = false; //Make sure to disable before fixing issues.
+
+
 const Super_Debug = false;
 
   const Omni_Pass_List={
@@ -577,8 +581,9 @@ function checkCookie() {
 	Inital_Cookie()
  }
 } 
+if(document.getElementById("Nez.Body").hasAttribute("Cookies")){
 checkCookie();
-
+}
 //Reworked system below (with my new knowledge of html-js)
 let PERM_input = true;
 let PERM_Passwordscreen = false;
@@ -853,9 +858,139 @@ for(var b=0;b<BLOS2.length;b++)
 	Mobilelink_Set(document.querySelector("Blosite[NEZID=\""+I.getAttribute("NEZID")+"\"]"));}
 	}
 }
-	
+	COMPILE_VARS(document.getElementById("Visiblemenu"));
 }
 //^ Page Prepare and Set functions ^//
+
+//V CF icon Formatter V//
+function PA_FORMAT(OBJ)
+{
+var F=document.querySelectorAll("CF");
+for(var i=0;i<F.length;i++)
+{
+
+F[i].outerHTML ="<div CF_Icon ><img CF_Icon="+F[i].innerHTML+" src=\"./Internals/Icon_CF.png\"></img></div>";
+
+
+}
+}
+//^ CF icon Formatter//
+
+//V All CF Compiler Script V//
+const CF_VAR_PAT = /\{@((([A-Z0-9,_\.]*)-)+[\":\+\.\%A-Z,_0-9\{\}\[\]]*|save|load|RESET)@\}/igm;
+const Test_text = "{@Valid-CF_VAR-OBJ@} {@Not-va!lid@} {@Also-Valid@} {@Notvalid@}";
+function INIT_VARS()
+{
+
+}
+const keyify = (obj, prefix = '') => 
+  Object.keys(obj).reduce((res, el) => {
+    if( Array.isArray(obj[el]) ) {
+      return res;
+    } else if( typeof obj[el] === 'object' && obj[el] !== null ) {
+      return [...res, ...keyify(obj[el], prefix + el + '.')];
+    }
+    return [...res, prefix + el];
+  }, []);
+function index(obj,is, value) {
+    if (typeof is == 'string')
+        return index(obj,is.split('.'), value);
+    else if (is.length==1 && value!==undefined)
+        return obj[is[0]] = value;
+    else if (is.length==0)
+        return obj;
+    else
+        return index(obj[is[0]],is.slice(1), value);
+}
+function COMPILE_VARS(OBJ)
+{
+if(!OBJ.innerHTML.match(CF_VAR_PAT)||!document.getElementById("Nez.Body").hasAttribute("RP_VARS")){return;}
+if(OBJ.innerHTML.match(CF_VAR_PAT).length==0){return;}
+	var newpasta = keyify(CFV);
+console.log(CFV);
+let result = OBJ.innerHTML.match(CF_VAR_PAT);
+console.log(result);
+for(var i2=0;i2<result.length;i2++)
+{
+	var data=result[i2].slice(2, -2).split("-");
+newpasta = keyify(CFV);
+	switch(data[0].toUpperCase())
+	{	
+	case "SET":
+	var _SET = data[2];
+	function TRAY(){try{return JSON.parse(data[2]);}catch(e){return}}
+	if(!TRAY())
+	{	
+	switch(data[2][0])
+	{	
+	case"+":
+	case"%":
+	//console.log(data[1],data[2].startsWith("%"));
+	_SET = Number(data[2].slice(1))*(data[2].startsWith("%")?-1:1);
+	index(CFV,data[1],_SET);
+	OBJ.innerHTML = OBJ.innerHTML.replace(result[i2],"");
+	break;
+	}
+	}else{
+	_SET = JSON.parse(data[2]);	
+	index(CFV,data[1],_SET);
+	OBJ.innerHTML = OBJ.innerHTML.replace(result[i2],"");
+	}
+
+	//console.log(CFV);
+	break;
+	case "DISPLAY":
+	OBJ.innerHTML = OBJ.innerHTML.replace(result[i2],index(CFV,data[1]));
+	break;
+	case "FUNCTION_SET":
+	//Set up the new string
+
+  
+	var newscript = data[2].slice(1, -1);
+	//console.log(newpasta);
+	for(var i=0;i<newpasta.length;i++)
+	{
+	var PATS = new RegExp(newpasta[i], "g");
+	newscript = newscript.replace(PATS,"CFV."+newpasta[i])
+	console.log(newpasta);
+	}
+	//console.log(newpasta);
+	index(CFV,data[1],eval(""+newscript+";"))
+	OBJ.innerHTML = OBJ.innerHTML.replace(result[i2],"");
+	break;
+		case "FUNCTION_DISPLAY":
+	//Set up the new string
+
+
+	var newscript = data[2].slice(1, -1);
+	
+	for(var i=0;i<newpasta.length;i++)
+	{
+	var PATS = new RegExp(newpasta[i], "gm");
+	newscript = newscript.replace(PATS,"CFV."+newpasta[i])
+	
+	}
+	//console.log(newpasta);
+	OBJ.innerHTML = OBJ.innerHTML.replace(result[i2],eval(" "+newscript+";"));
+	break;
+	
+	case "SAVE":
+	OBJ.innerHTML = OBJ.innerHTML.replace(result[i2],"");
+	break;
+	case "LOAD":
+	OBJ.innerHTML = OBJ.innerHTML.replace(result[i2],"");
+	break;
+	case "RESET":
+	OBJ.innerHTML = OBJ.innerHTML.replace(result[i2],"");
+	break;
+	default:
+	Errorscreen("("+data[0].toUpperCase()+") Is invalid [Object is "+result[i2]+"]")
+	return;
+	}
+}
+}
+INIT_VARS();
+//^  All CF Compiler Script//
 
 
 
@@ -1019,8 +1154,9 @@ return Translate(Totext,true,null,null,null,null,null,Debreaker);
 //BACKDOOR(false,"TimeMouseKey_001");
 //BACKDOOR(false,"TimeMouseKey_000");
 //BACKDOOR(false,"TimeMouseKey_002");
+if(!document.getElementById("Nez.Body").hasAttribute("Menuless")){
 GET_Menu(!BACKDOOR(true)?undefined:BACKDOOR(true)[0],!BACKDOOR(true)?undefined:BACKDOOR(true)[1]);
-const CORRUPTFUCK_BOMB = true; //Make sure to disable before fixing issues.
+}PA_FORMAT();
 
 	/*!
 devtools-detect
