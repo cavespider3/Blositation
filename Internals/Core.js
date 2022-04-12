@@ -673,20 +673,25 @@ Errorscreen("Requested page ("+start+") does not exist!");
 //^ Menudata check function ^//
 
 //V Page get function V//
-function GET_page(Page)
+function GET_page(Page,concatted)
 {
 if (document.querySelectorAll("Blosite[MenuData]>Blosite["+Page+"]").length==0)
 {
 Errorscreen("Requested page ("+Page+") does not exist!");
 }else if(document.querySelectorAll("Blosite[MenuData]>Blosite["+Page+"]").length>1)
 {
-Errorscreen(document.querySelectorAll("Blosite[MenuData]>Blosite["+start+"]").length+" Copies of \""+start+"\" exist!");	
+Errorscreen(document.querySelectorAll("Blosite[MenuData]>Blosite["+Page+"]").length+" Copies of \""+start+"\" exist!");	
 }else
 {
+if(concatted)
+{
+return document.querySelector("Blosite[MenuData]>Blosite["+Page+"]").innerHTML;
+}
 PREP_page(Page,document.querySelector("Blosite[MenuData]>Blosite["+Page+"]").hasAttribute("Secure"));
 }
 
 }
+
 //^ Page get function ^//
 
 //V super text function V//
@@ -841,7 +846,16 @@ if(Primal)
 	document.getElementsByTagName("div")[0].className ="Apex";
 	document.getElementsByTagName("div")[1].className ="Apex";
 	}else{
-	document.getElementById("Archivetitle").innerHTML="Genjituyon Archives";
+	if(document.getElementById("Nez.Body").hasAttribute("RP_VARS"))
+	{
+	document.getElementById("Archivetitle").innerHTML=(!CFV.NORMALTITLE?document.title:CFV.NORMALTITLE)	
+	document.querySelector(':root').style.setProperty('--DEFAULTCOLOR', (!CFV.SCENECOLOR?'#00FF00':CFV.SCENECOLOR))
+	document.getElementsByTagName("div")[0].className ="";
+		document.getElementById("Archivetitle").style["text-align"]="left";
+		document.getElementById("Archivetitle").style.left="10%";
+	document.getElementsByTagName("div")[1].className ="";
+	}else{
+	document.getElementById("Archivetitle").innerHTML="Genjituyon Archives";}
 		document.getElementsByTagName("div")[0].className ="";
 		document.getElementById("Archivetitle").style["text-align"]="left";
 		document.getElementById("Archivetitle").style.left="10%";
@@ -877,7 +891,7 @@ F[i].outerHTML ="<div CF_Icon ><img CF_Icon="+F[i].innerHTML+" src=\"./Internals
 //^ CF icon Formatter//
 
 //V All CF Compiler Script V//
-const CF_VAR_PAT = /\{@((([A-Z0-9,_\.]*)-)+[\":\+\.\%A-Z,_0-9\{\}\[\]]*|save|load|RESET)@\}/igm;
+const CF_VAR_PAT = /\{@((([A-z0-9,_\.]*)-)+([^@]*)|save|load|RESET)@\}/igm;
 const Test_text = "{@Valid-CF_VAR-OBJ@} {@Not-va!lid@} {@Also-Valid@} {@Notvalid@}";
 function INIT_VARS()
 {
@@ -907,9 +921,9 @@ function COMPILE_VARS(OBJ)
 if(!OBJ.innerHTML.match(CF_VAR_PAT)||!document.getElementById("Nez.Body").hasAttribute("RP_VARS")){return;}
 if(OBJ.innerHTML.match(CF_VAR_PAT).length==0){return;}
 	var newpasta = keyify(CFV);
-console.log(CFV);
+//console.log(CFV);
 let result = OBJ.innerHTML.match(CF_VAR_PAT);
-console.log(result);
+//console.log(result);
 for(var i2=0;i2<result.length;i2++)
 {
 	var data=result[i2].slice(2, -2).split("-");
@@ -952,7 +966,7 @@ newpasta = keyify(CFV);
 	{
 	var PATS = new RegExp(newpasta[i], "g");
 	newscript = newscript.replace(PATS,"CFV."+newpasta[i])
-	console.log(newpasta);
+	//console.log(newpasta);
 	}
 	//console.log(newpasta);
 	index(CFV,data[1],eval(""+newscript+";"))
@@ -972,6 +986,23 @@ newpasta = keyify(CFV);
 	}
 	//console.log(newpasta);
 	OBJ.innerHTML = OBJ.innerHTML.replace(result[i2],eval(" "+newscript+";"));
+	break;
+	case "CONCAT":
+	//get the menu
+	OBJ.innerHTML = OBJ.innerHTML.replace(result[i2],GET_page(data[1],true));
+	COMPILE_VARS(OBJ);
+	break;
+	case "STATE":
+	
+	var newscript = data[2];
+	for(var i=0;i<newpasta.length;i++)
+	{
+	var PATS = new RegExp(newpasta[i], "g");
+	newscript = newscript.replace(PATS,"CFV."+newpasta[i])
+	//console.log(newpasta);
+	}
+	//console.log(newpasta);
+	OBJ.innerHTML = OBJ.innerHTML.replace(result[i2],eval(data[1]+"("+newscript+");"));
 	break;
 	
 	case "SAVE":
