@@ -109,9 +109,9 @@ var Mojibake_Cosmium = !ReplacementList?{
 "_":"▬",
 /*
 	■	□	▢	▣	▤	▥	▦	▧	▨	▩	▪	▫	▬	▭	▮	▯
-U+25Bx	▰	▱	▲	△	▴	▵	▶	▷	▸	▹	►	▻	▼	▽	▾	▿
+U+25Bx	▰	▱	▲	△	▴	▵	▶	▷	▸	▹	►	▻	▼	▽	▾	▿⬤
 U+25Cx	◀	◁	◂	◃	◄	◅	◆	◇	◈	◉	◊	○	◌	◍	◎	●
-U+25Dx	◐	◑	◒	◓	◔	◕	◖	◗	◘	◙	◚	◛	◜	◝	◞	◟
+U+25Dx	⬤◐◑◒◓◔	◕	◖	◗	◘	◙	◚	◛	◜	◝	◞	◟
 U+25Ex	◠	◡	◢	◣	◤	◥	◦	◧	◨	◩	◪	◫	◬	◭	◮	◯
 U+25Fx	◰	◱	◲	◳	◴	◵	◶	◷	◸	◹	◺	◻	◼	◽	◾	◿
 */
@@ -861,7 +861,9 @@ if(Primal)
 		document.getElementById("Archivetitle").style.left="10%";
 	document.getElementsByTagName("div")[1].className ="";
 	}
+
 document.getElementById("Visiblemenu").innerHTML = BLOS.innerHTML;
+	COMPILE_VARS(document.getElementById("Visiblemenu"));
 //console.log(document.querySelectorAll("#Visiblemenu :not(Blosite[MenuData]>Blosite["+Page+"]):not(br)"));//Now we finish setting it up
 var BLOS2 = document.querySelectorAll("#Visiblemenu :not(Blosite[MenuData]>Blosite["+Page+"]):not(br)");
 for(var b=0;b<BLOS2.length;b++)
@@ -872,7 +874,7 @@ for(var b=0;b<BLOS2.length;b++)
 	Mobilelink_Set(document.querySelector("Blosite[NEZID=\""+I.getAttribute("NEZID")+"\"]"));}
 	}
 }
-	COMPILE_VARS(document.getElementById("Visiblemenu"));
+
 }
 //^ Page Prepare and Set functions ^//
 
