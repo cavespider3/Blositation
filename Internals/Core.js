@@ -24,6 +24,8 @@ var KAYS;
 var OLD_TEXT_CLOUD =null;
 var PastaKey="";
 var PLR_CUR;
+PreviousPage="";
+SelectedPage="";
 old_Pas1=["12345","_Hub","_Hub"];
 
    function ToBlositeresult()
@@ -688,6 +690,7 @@ if(concatted)
 return document.querySelector("Blosite[MenuData]>Blosite["+Page+"]").innerHTML;
 }
 PREP_page(Page,document.querySelector("Blosite[MenuData]>Blosite["+Page+"]").hasAttribute("Secure"));
+
 }
 
 }
@@ -725,7 +728,7 @@ return"";
 
 
 //V property managing function V//
-function SET_PERMS(Page,Primal)//Primal is the data from the selected function
+SET_PERMS = function (Page,Primal)//Primal is the data from the selected function
 {
 
 }
@@ -870,8 +873,9 @@ for(var b=0;b<BLOS2.length;b++)
 {
 	if(BLOS2[b].hasAttribute("Click_Mystry")||BLOS2[b].hasAttribute("Click_Safe")){
 	let I = BLOS2[b];
+	if(!BLOS2[b].onclick){
 	BLOS2[b].onclick = function(){
-	Mobilelink_Set(document.querySelector("Blosite[NEZID=\""+I.getAttribute("NEZID")+"\"]"));}
+	Mobilelink_Set(document.querySelector("Blosite[NEZID=\""+I.getAttribute("NEZID")+"\"]"));}}
 	}
 }
 
@@ -893,7 +897,7 @@ F[i].outerHTML ="<div CF_Icon ><img CF_Icon="+F[i].innerHTML+" src=\"./Internals
 //^ CF icon Formatter//
 
 //V All CF Compiler Script V//
-const CF_VAR_PAT = /\{@((([A-z0-9,_\.]*)-)+([^@]*)|save|load|RESET)@\}/igm;
+const CF_VAR_PAT = /\{@((([^@]+)-)+(\([^@]+\))|save|load|RESET)@\}/igm;
 const Test_text = "{@Valid-CF_VAR-OBJ@} {@Not-va!lid@} {@Also-Valid@} {@Notvalid@}";
 function INIT_VARS()
 {
@@ -934,10 +938,10 @@ newpasta = keyify(CFV);
 	{	
 	case "SET":
 	var _SET = data[2];
-	function TRAY(){try{return JSON.parse(data[2]);}catch(e){return}}
+	function TRAY(){try{return JSON.parse(data[2].slice(1, -1));}catch(e){return}}
 	if(!TRAY())
 	{	
-	switch(data[2][0])
+	switch(data[2].slice(1, -1)[0])
 	{	
 	case"+":
 	case"%":
@@ -948,7 +952,8 @@ newpasta = keyify(CFV);
 	break;
 	}
 	}else{
-	_SET = JSON.parse(data[2]);	
+		console.log("oh");
+	_SET = JSON.parse(data[2].slice(1, -1));	
 	index(CFV,data[1],_SET);
 	OBJ.innerHTML = OBJ.innerHTML.replace(result[i2],"");
 	}
@@ -956,7 +961,7 @@ newpasta = keyify(CFV);
 	//console.log(CFV);
 	break;
 	case "DISPLAY":
-	OBJ.innerHTML = OBJ.innerHTML.replace(result[i2],index(CFV,data[1]));
+	OBJ.innerHTML = OBJ.innerHTML.replace(result[i2],index(CFV,data[1].slice(1, -1)));
 	break;
 	case "FUNCTION_SET":
 	//Set up the new string
@@ -966,11 +971,13 @@ newpasta = keyify(CFV);
 	//console.log(newpasta);
 	for(var i=0;i<newpasta.length;i++)
 	{
+	if(newpasta[i].startsWith("CFV.")){continue;}
 	var PATS = new RegExp(newpasta[i], "g");
 	newscript = newscript.replace(PATS,"CFV."+newpasta[i])
 	//console.log(newpasta);
 	}
 	//console.log(newpasta);
+	console.log(newscript);
 	index(CFV,data[1],eval(""+newscript+";"))
 	OBJ.innerHTML = OBJ.innerHTML.replace(result[i2],"");
 	break;
@@ -982,12 +989,118 @@ newpasta = keyify(CFV);
 	
 	for(var i=0;i<newpasta.length;i++)
 	{
+	if(newpasta[i].startsWith("CFV.")){continue;}
 	var PATS = new RegExp(newpasta[i], "gm");
 	newscript = newscript.replace(PATS,"CFV."+newpasta[i])
 	
 	}
 	//console.log(newpasta);
+	console.log(data[1]+"("+newscript+");");
 	OBJ.innerHTML = OBJ.innerHTML.replace(result[i2],eval(" "+newscript+";"));
+	break;
+	case "BIFURCATE":
+	 var BIFU = result[i2].match(CF_VAR_PAT)[0];
+	 BIFU = BIFU.replace(/&gt;/igm,">");
+	 BIFU = BIFU.replace(/&lt;/igm,"<");
+	  BIFU = BIFU.replace(/&amp;/igm,"&");
+	 console.log("BIFURCATE");
+
+	 var dataBIF=BIFU.slice(2, -2).split("-");
+	 
+	 	dataBIF[1] = dataBIF[1].slice(1, -1);
+	for(var i=0;i<newpasta.length;i++)
+	{
+	if(newpasta[i].startsWith("CFV.")){continue;}
+	var PATS = new RegExp(newpasta[i], "gm");
+	dataBIF[1] = dataBIF[1].replace(PATS,"CFV."+newpasta[i])
+	}
+	 
+	  dataBIF[2] = dataBIF[2].slice(1, -1);
+	
+	for(var i=0;i<newpasta.length;i++)
+	{
+	if(newpasta[i].startsWith("CFV.")){continue;}
+	var PATS = new RegExp(newpasta[i], "gm");
+	dataBIF[2] = dataBIF[2].replace(PATS,"CFV."+newpasta[i])
+	}
+	 
+	//the if else code piece
+	//Template -> {@bifurcate-[conditions]-[result]@}
+	//example: {@bifurcate-A>B,A>C,A>D-(->)@}
+	//an if/else is repesented by -> (A->B->C)
+	var CONDS = dataBIF[1].split(",");
+	var OUTPUTS = dataBIF[2].split("►");
+	console.log(CONDS,OUTPUTS,dataBIF[2]);
+	for(var B=0;B<=CONDS.length;B++)
+	{
+	console.log(B,CONDS.length);
+	if(eval(CONDS[B]))
+	{		
+	OBJ.innerHTML = OBJ.innerHTML.replace(result[i2],eval(OUTPUTS[B]));
+	break;
+	}else if(!OUTPUTS[B])
+	{
+	OBJ.innerHTML = OBJ.innerHTML.replace(result[i2],"");
+	break;	
+	}else if(B==CONDS.length){
+		
+	OBJ.innerHTML = OBJ.innerHTML.replace(result[i2],eval(OUTPUTS[B]));
+
+	break;
+	}
+	}
+	break;
+	case "BIFURCATE_HIDE":
+	 var BIFU = result[i2].match(CF_VAR_PAT)[0];
+	 BIFU = BIFU.replace(/&gt;/igm,">");
+	 BIFU = BIFU.replace(/&lt;/igm,"<");
+	  BIFU = BIFU.replace(/&amp;/igm,"&");
+	 console.log("BIFURCATE");
+
+	 var dataBIF=BIFU.slice(2, -2).split("-");
+	 
+	 	dataBIF[1] = dataBIF[1].slice(1, -1);
+	for(var i=0;i<newpasta.length;i++)
+	{
+	if(newpasta[i].startsWith("CFV.")){continue;}
+	var PATS = new RegExp(newpasta[i], "gm");
+	dataBIF[1] = dataBIF[1].replace(PATS,"CFV."+newpasta[i])
+	}
+	 
+	  dataBIF[2] = dataBIF[2].slice(1, -1);
+	
+	for(var i=0;i<newpasta.length;i++)
+	{
+	if(newpasta[i].startsWith("CFV.")){continue;}
+	var PATS = new RegExp(newpasta[i], "gm");
+	dataBIF[2] = dataBIF[2].replace(PATS,"CFV."+newpasta[i])
+	}
+	 
+	//the if else code piece
+	//Template -> {@bifurcate-[conditions]-[result]@}
+	//example: {@bifurcate-A>B,A>C,A>D-(->)@}
+	//an if/else is repesented by -> (A->B->C)
+	var CONDS = dataBIF[1].split(",");
+	var OUTPUTS = dataBIF[2].split("►");
+	console.log(CONDS,OUTPUTS,dataBIF[2]);
+	for(var B=0;B<=CONDS.length;B++)
+	{
+	console.log(B,CONDS.length);
+	if(eval(CONDS[B]))
+	{		
+	eval(OUTPUTS[B])
+	OBJ.innerHTML = OBJ.innerHTML.replace(result[i2],"");
+	break;
+	}else if(!OUTPUTS[B])
+	{
+	OBJ.innerHTML = OBJ.innerHTML.replace(result[i2],"");
+	break;	
+	}else if(B==CONDS.length){
+	eval(OUTPUTS[B]);
+OBJ.innerHTML = OBJ.innerHTML.replace(result[i2],"");
+	break;
+	}
+	}
 	break;
 	case "CONCAT":
 	//get the menu
@@ -996,14 +1109,15 @@ newpasta = keyify(CFV);
 	break;
 	case "STATE":
 	
-	var newscript = data[2];
+	var newscript = data[2].slice(1, -1);
 	for(var i=0;i<newpasta.length;i++)
 	{
 	var PATS = new RegExp(newpasta[i], "g");
+	if(newpasta[i].startsWith("CFV.")){continue;}
 	newscript = newscript.replace(PATS,"CFV."+newpasta[i])
 	//console.log(newpasta);
 	}
-	//console.log(newpasta);
+	//console.log(data[1]+"("+newscript+");");
 	OBJ.innerHTML = OBJ.innerHTML.replace(result[i2],eval(data[1]+"("+newscript+");"));
 	break;
 	
@@ -1032,6 +1146,7 @@ function Mobilelink_Set(Blosite_Obj)
 {
 	if(!PERM_input){return;}
 	usingtouch=true;
+
 	console.warn(Blosite_Obj.hasAttribute("RedCode"));
 	SELECTOR_Point = Number(Blosite_Obj.getAttribute("nezid"));
 	//same search query
@@ -1041,9 +1156,16 @@ for(var c=0;c<Blosite_Obj.attributes.length;c++)
 	if((Blosite_Obj.attributes[c].localName).startsWith("_"))
 	{
 	Searchquery=Blosite_Obj.attributes[c].localName;
+	PreviousPage = SelectedPage;
+	console.log(PreviousPage);
+	SelectedPage=Blosite_Obj.attributes[c].localName;
 	break;
 	}
 }
+	if(Blosite_Obj.hasAttribute("Reroute"))
+	{
+	PreviousPage = Blosite_Obj.getAttribute("Reroute");
+	}
 	GET_Menu(Blosite_Obj.hasAttribute("RedCode")&&!Get_Cookie_Secret(Blosite_Obj.getAttribute("cookieflag"))?"_Password_Novau":Searchquery,Blosite_Obj,Searchquery);
 }
 
